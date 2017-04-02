@@ -9,6 +9,8 @@ function int bcc()
 		Read(fedfc)
  if(c<3)
 {M=M+2}
+ABC(a,5,bc)
+break
 	}
 
 while(c<5)

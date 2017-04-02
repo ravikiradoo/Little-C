@@ -4,8 +4,8 @@ FILE *yyin;
 %}
 
 
-%token Math String Import Standard FUNCTION
-%token FOR WHILE IF ELSE DO
+%token Math String Import Standard FUNCTION RETURN
+%token FOR WHILE IF ELSE DO COMMA BREAK
 %token INT FLOAT CHAR STRING ID READ NUM
 %token SOB SCB COB CCB CROB CRCB 
 %token PLUS MINUS MULTIPLY DIVISON AND OR LT LTE GT GTE EQUALTO ASSIGNMENT SEMICOLON
@@ -23,7 +23,9 @@ Function:  FUNCTION Type ID COB CCB Block{printf("5");} ;
 Block:CROB Statement_List CRCB {printf("6");};
 Statement_List: Statement Statement_List|Statement {printf("7");};
 Statement: Variable_Declaration_List|Loop_Statement|READ COB ID CCB|ID ASSIGNMENT Arithmetic_Expression
- 			| ID ASSIGNMENT Conditional_Expression | ID ASSIGNMENT Logical_Expression| Conditional_Statement {printf("8");};
+ 			| ID ASSIGNMENT Conditional_Expression | ID ASSIGNMENT Logical_Expression| Conditional_Statement 
+            |Function_Call_Statement | RETURN ID | RETURN Conditional_Expression |RETURN NUM |RETURN Arithmetic_Expression|
+            RETURN Logical_Expression| BREAK {printf("8");};
 Loop_Statement: FOR COB ID ASSIGNMENT NUM SEMICOLON ID Conditional_Operator NUM SEMICOLON ID ASSIGNMENT ID Arithmetic_Operator NUM CCB Block
 				|WHILE COB Conditional_Expression CCB Block|DO Block WHILE COB Conditional_Expression CCB {printf("9 ");} ;
 Arithmetic_Operator : PLUS | MINUS | MULTIPLY| DIVISON |ASSIGNMENT {printf("10 ");} ;
@@ -32,7 +34,9 @@ Conditional_Expression : ID Conditional_Operator Arithmetic_Expression {printf("
 Arithmetic_Expression :ID Arithmetic_Operator Arithmetic_Expression | NUM |CROB Arithmetic_Expression CRCB | SOB Arithmetic_Expression SCB | COB Arithmetic_Expression CCB {printf("13 ");};
 Logical_Expression:Conditional_Expression Logical_Operator Logical_Expression |Conditional_Expression {printf("14 ");};
 Logical_Operator:AND|OR {printf("14 ");};
-Conditional_Statement : IF COB Conditional_Expression CCB Block else Block | IF COB Conditional_Expression CCB Block
+Conditional_Statement : IF COB Conditional_Expression CCB Block ELSE Block | IF COB Conditional_Expression CCB Block;
+Function_Call_Statement :ID COB List_Of_Identifiers CCB|ID ASSIGNMENT ID COB List_Of_Identifiers CCB;
+List_Of_Identifiers : NUM COMMA List_Of_Identifiers | ID COMMA List_Of_Identifiers | NUM |ID;
 %%
 #include "lex.yy.c"
 main(int argc,char *argv[])

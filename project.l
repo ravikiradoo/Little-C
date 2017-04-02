@@ -27,6 +27,8 @@ And return AND;
 Or return OR;
 function return FUNCTION;
 Read return READ;
+Return return RETURN;
+break return BREAK;
 do return DO;
 {Digit}+ return NUM;
 {Letter}({Letter}|{Digit})* return ID;
@@ -47,4 +49,6 @@ do return DO;
 "*" return MULTIPLY;
 "=" return ASSIGNMENT;
 ; return SEMICOLON;
+, return COMMA;
+
  %%
