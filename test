@@ -8,14 +8,20 @@ function int bcc()
 	{
 		Read(fedfc)
 	}
-while()
-{
-Read(abc)
-}
-do
-{
-float c
-
-}while()
-
+	while()
+	{
+		Read(abc)
+	}
+	do
+	{
+		float c
+	}while()
+	if(5 > 2)
+	{
+		Read(qwe)
+	}
+	else
+	{
+		Read(svdf)
+	}
 }

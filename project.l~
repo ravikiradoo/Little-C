@@ -27,6 +27,7 @@ And return AND;
 Or return OR;
 function return FUNCTION;
 Read return READ;
+do return DO;
 {Digit}+ return NUM;
 {Letter}({Letter}|{Digit})* return ID;
 "[" return SOB;
