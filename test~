@@ -7,15 +7,17 @@ function int bcc()
 	for(i=1;i<=2;i=i+1)
 	{
 		Read(fedfc)
+		M=M+2
 	}
-while()
+
+while(c<5)
 {
-Read(abc);
+Read(abc)
+C=B<5
 }
 do
 {
-float c
-
-}while()
-
+Read(cde)
+A=B<5 And
+}while(a>5)
 }
