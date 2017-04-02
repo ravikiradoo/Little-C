@@ -12,24 +12,62 @@ FILE *yyin;
 %%
 
 
-str: Program {return 0;} ;
-Program:Import SOB Standard Library SCB Variable_Declaration_List Function_List {printf("0");} ;
-Library: Math Library|String Library | Math |String ;
-Variable_Declaration_List: Variable Variable_Declaration_List | Variable {printf("1");};
-Variable: Type ID  {printf("2");};
-Type:INT|FLOAT|CHAR|STRING {printf("3");};
-Function_List: Function Function_List|Function  {printf("4");};
-Function:  FUNCTION Type ID COB CCB Block{printf("5");} ;
-Block:CROB Statement_List CRCB {printf("6");};
-Statement_List: Statement Statement_List|Statement {printf("7");};
-Statement: Variable_Declaration_List|Loop_Statement|READ COB ID CCB {printf("8");};
-Loop_Statement: FOR COB ID ASSIGNMENT NUM SEMICOLON ID Conditional_Operator NUM SEMICOLON ID ASSIGNMENT ID Arithmetic_Operator NUM CCB Block
-				|WHILE COB Conditional_Expression CCB Block|DO Block WHILE COB Conditional_Expression CCB {printf("9 ");} ;
-Arithmetic_Operator : PLUS | MINUS | MULTIPLY| DIVISON |ASSIGNMENT {printf("10 ");} ;
-Conditional_Operator :  LT|LTE|GT|GTE|EQUALTO {printf("11 ");};
-Conditional_Expression : ID Conditional_Operator Arithmetic_Expression {printf("12 ");};
-Arithmetic_Expression :ID Arithmetic_Operator Arithmetic_Expression | NUM |
-CROB Arithmetic_Expression CRCB | SOB Arithmetic_Expression SCB | COB Arithmetic_Expression CCB
+	str: Program {return 0;} ;
+
+	Program:Import SOB Standard Library SCB Variable_Declaration_List Function_List {printf("0");} ;
+
+	Library: Math Library
+		|String Library 
+		| Math 
+		|String ;
+
+	Variable_Declaration_List: Variable Variable_Declaration_List 
+				   | Variable {printf("1");};
+
+	Variable: Type ID  {printf("2");};
+
+	Type:INT
+	    |FLOAT
+	    |CHAR
+	    |STRING {printf("3");};
+
+	Function_List: Function Function_List
+		      |Function  {printf("4");};
+
+	Function:  FUNCTION Type ID COB CCB Block{printf("5");} ;
+
+	Block:CROB Statement_List CRCB {printf("6");};
+
+	Statement_List: Statement Statement_List
+		       |Statement {printf("7");};
+
+	Statement: Variable_Declaration_List
+		  |Loop_Statement
+		  |Conditional_Statement
+		  |READ COB ID CCB {printf("8");};
+
+	Loop_Statement: FOR COB ID ASSIGNMENT NUM SEMICOLON ID Conditional_Operator NUM SEMICOLON ID ASSIGNMENT ID Arithmetic_Operator NUM 				CCB Block
+			|WHILE COB CCB Block
+			|DO Block WHILE COB CCB {printf("while");};
+	
+	Conditional_Statement: IF COB Expression CCB Block ELSE Block
+			      |IF COB Expression CCB Block {printf("If");};
+
+	Expression : NUM Conditional_Operator NUM ;
+		    
+
+	Conditional_Operator : LT
+			      |LTE
+			      |GT
+			      |GTE
+			      |EQUALTO {printf("11 ");};
+
+	Arithmetic_Operator : PLUS 
+			    | MINUS 
+			    | MULTIPLY
+			    | DIVISON
+			    |ASSIGNMENT {printf("10 ");} ;
+
 %%
 #include "lex.yy.c"
 main(int argc,char *argv[])
