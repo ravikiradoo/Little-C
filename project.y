@@ -23,7 +23,7 @@ Function:  FUNCTION Type ID COB CCB Block{printf("5");} ;
 Block:CROB Statement_List CRCB {printf("6");};
 Statement_List: Statement Statement_List|Statement {printf("7");};
 Statement: Variable_Declaration_List|Loop_Statement|READ COB ID CCB|ID ASSIGNMENT Arithmetic_Expression
- 			| ID ASSIGNMENT Conditional_Expression | ID ASSIGNMENT Logical_Expression{printf("8");};
+ 			| ID ASSIGNMENT Conditional_Expression | ID ASSIGNMENT Logical_Expression| Conditional_Statement {printf("8");};
 Loop_Statement: FOR COB ID ASSIGNMENT NUM SEMICOLON ID Conditional_Operator NUM SEMICOLON ID ASSIGNMENT ID Arithmetic_Operator NUM CCB Block
 				|WHILE COB Conditional_Expression CCB Block|DO Block WHILE COB Conditional_Expression CCB {printf("9 ");} ;
 Arithmetic_Operator : PLUS | MINUS | MULTIPLY| DIVISON |ASSIGNMENT {printf("10 ");} ;
@@ -32,6 +32,7 @@ Conditional_Expression : ID Conditional_Operator Arithmetic_Expression {printf("
 Arithmetic_Expression :ID Arithmetic_Operator Arithmetic_Expression | NUM |CROB Arithmetic_Expression CRCB | SOB Arithmetic_Expression SCB | COB Arithmetic_Expression CCB {printf("13 ");};
 Logical_Expression:Conditional_Expression Logical_Operator Logical_Expression |Conditional_Expression {printf("14 ");};
 Logical_Operator:AND|OR {printf("14 ");};
+Conditional_Statement : IF COB Conditional_Expression CCB Block ELSE Block | IF COB Conditional_Expression CCB Block
 %%
 #include "lex.yy.c"
 main(int argc,char *argv[])

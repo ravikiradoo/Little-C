@@ -7,7 +7,8 @@ function int bcc()
 	for(i=1;i<=2;i=i+1)
 	{
 		Read(fedfc)
-		M=M+2
+ if(c<3)
+{M=M+}
 	}
 
 while(c<5)
@@ -18,6 +19,6 @@ C=B<5
 do
 {
 Read(cde)
-A=B<5 And
+A=B<5 And C<5
 }while(a>5)
 }
