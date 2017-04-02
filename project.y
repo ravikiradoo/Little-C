@@ -23,10 +23,13 @@ Function:  FUNCTION Type ID COB CCB Block{printf("5");} ;
 Block:CROB Statement_List CRCB {printf("6");};
 Statement_List: Statement Statement_List|Statement {printf("7");};
 Statement: Variable_Declaration_List|Loop_Statement|READ COB ID CCB {printf("8");};
-Loop_Statement: FOR COB ID ASSIGNMENT NUM SEMICOLON ID Condtional_Operator NUM SEMICOLON ID ASSIGNMENT ID Arithmetic_Operator NUM CCB Block
-				|WHILE COB CCB Block|DO Block WHILE COB CCB ;
-Condtional_Operator :  LT|LTE|GT|GTE|EQUALTO {printf("11 ");};
+Loop_Statement: FOR COB ID ASSIGNMENT NUM SEMICOLON ID Conditional_Operator NUM SEMICOLON ID ASSIGNMENT ID Arithmetic_Operator NUM CCB Block
+				|WHILE COB Conditional_Expression CCB Block|DO Block WHILE COB Conditional_Expression CCB {printf("9 ");} ;
 Arithmetic_Operator : PLUS | MINUS | MULTIPLY| DIVISON |ASSIGNMENT {printf("10 ");} ;
+Conditional_Operator :  LT|LTE|GT|GTE|EQUALTO {printf("11 ");};
+Conditional_Expression : ID Conditional_Operator Arithmetic_Expression {printf("12 ");};
+Arithmetic_Expression :ID Arithmetic_Operator Arithmetic_Expression | NUM |
+CROB Arithmetic_Expression CRCB | SOB Arithmetic_Expression SCB | COB Arithmetic_Expression CCB
 %%
 #include "lex.yy.c"
 main(int argc,char *argv[])
