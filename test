@@ -1,7 +1,9 @@
 import [standard math] 
 int ade
+bool s_
 function int bcc()
 {	float s
+	Write(tar)
 	Read(gdf)
 	int A1
 	for(i=1;i<=2;i=i+1)
@@ -21,7 +23,12 @@ C=B<5
 do
 {
 Read(cde)
-A=B<5 And C<5
+Return abc
+Return B<5 And C<5
 }while(a>5)
 
+}
+function void the()
+{
+	Read(d0)
 }
