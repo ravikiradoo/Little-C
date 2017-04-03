@@ -27,6 +27,10 @@ And return AND;
 Or return OR;
 function return FUNCTION;
 Read return READ;
+<<<<<<< HEAD
+=======
+Retuurn return RETURN
+>>>>>>> 0b6be0d5a09934104f203b67d5c1d9d9ad2c6974
 do return DO;
 {Digit}+ return NUM;
 {Letter}({Letter}|{Digit})* return ID;
