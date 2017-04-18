@@ -30,8 +30,8 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-#ifndef YY_YY_Y_TAB_H_INCLUDED
-# define YY_YY_Y_TAB_H_INCLUDED
+#ifndef YY_YY_PROJECT_TAB_H_INCLUDED
+# define YY_YY_PROJECT_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -62,15 +62,15 @@ extern int yydebug;
     FLOAT = 272,
     CHAR = 273,
     STRING = 274,
-    READ = 275,
-    NUM = 276,
-    SOB = 277,
-    SCB = 278,
-    COB = 279,
-    CCB = 280,
-    CROB = 281,
-    CRCB = 282,
-    ID = 283,
+    ID = 275,
+    READ = 276,
+    NUM = 277,
+    SOB = 278,
+    SCB = 279,
+    COB = 280,
+    CCB = 281,
+    CROB = 282,
+    CRCB = 283,
     PLUS = 284,
     MINUS = 285,
     MULTIPLY = 286,
@@ -86,60 +86,10 @@ extern int yydebug;
     SEMICOLON = 296
   };
 #endif
-/* Tokens.  */
-#define Math 258
-#define String 259
-#define Import 260
-#define Standard 261
-#define FUNCTION 262
-#define RETURN 263
-#define FOR 264
-#define WHILE 265
-#define IF 266
-#define ELSE 267
-#define DO 268
-#define COMMA 269
-#define BREAK 270
-#define INT 271
-#define FLOAT 272
-#define CHAR 273
-#define STRING 274
-#define READ 275
-#define NUM 276
-#define SOB 277
-#define SCB 278
-#define COB 279
-#define CCB 280
-#define CROB 281
-#define CRCB 282
-#define ID 283
-#define PLUS 284
-#define MINUS 285
-#define MULTIPLY 286
-#define DIVISON 287
-#define AND 288
-#define OR 289
-#define LT 290
-#define LTE 291
-#define GT 292
-#define GTE 293
-#define EQUALTO 294
-#define ASSIGNMENT 295
-#define SEMICOLON 296
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef union YYSTYPE YYSTYPE;
-union YYSTYPE
-{
-#line 40 "project.y" /* yacc.c:1909  */
-
-int ival;
-double dval;
-char string[10];
-
-#line 142 "y.tab.h" /* yacc.c:1909  */
-};
+typedef int YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -149,4 +99,4 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_Y_TAB_H_INCLUDED  */
+#endif /* !YY_YY_PROJECT_TAB_H_INCLUDED  */

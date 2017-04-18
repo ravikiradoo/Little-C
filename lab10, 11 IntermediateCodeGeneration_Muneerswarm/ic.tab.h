@@ -30,8 +30,8 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-#ifndef YY_YY_Y_TAB_H_INCLUDED
-# define YY_YY_Y_TAB_H_INCLUDED
+#ifndef YY_YY_IC_TAB_H_INCLUDED
+# define YY_YY_IC_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -45,100 +45,94 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    Math = 258,
-    String = 259,
-    Import = 260,
-    Standard = 261,
-    FUNCTION = 262,
-    RETURN = 263,
-    FOR = 264,
-    WHILE = 265,
-    IF = 266,
-    ELSE = 267,
-    DO = 268,
-    COMMA = 269,
-    BREAK = 270,
-    INT = 271,
-    FLOAT = 272,
-    CHAR = 273,
-    STRING = 274,
-    READ = 275,
-    NUM = 276,
-    SOB = 277,
-    SCB = 278,
-    COB = 279,
-    CCB = 280,
-    CROB = 281,
-    CRCB = 282,
-    ID = 283,
-    PLUS = 284,
-    MINUS = 285,
-    MULTIPLY = 286,
-    DIVISON = 287,
-    AND = 288,
-    OR = 289,
-    LT = 290,
-    LTE = 291,
-    GT = 292,
-    GTE = 293,
-    EQUALTO = 294,
-    ASSIGNMENT = 295,
-    SEMICOLON = 296
+    _or = 258,
+    _and = 259,
+    _eq = 260,
+    _ne = 261,
+    _lt = 262,
+    _le = 263,
+    _gt = 264,
+    _ge = 265,
+    _minus = 266,
+    _plus = 267,
+    _mul = 268,
+    _div = 269,
+    _modulo = 270,
+    _uminus = 271,
+    _char = 272,
+    _int = 273,
+    _float = 274,
+    _double = 275,
+    _const = 276,
+    _signed = 277,
+    _unsigned = 278,
+    _short = 279,
+    _long = 280,
+    _goto = 281,
+    _else = 282,
+    _switch = 283,
+    _break = 284,
+    _continue = 285,
+    _case = 286,
+    _struct = 287,
+    _union = 288,
+    _typedef = 289,
+    _main = 290,
+    _assign = 291,
+    _default = 292,
+    _leftb = 293,
+    _rightb = 294,
+    _leftp = 295,
+    _rightp = 296,
+    _leftsp = 297,
+    _rightsp = 298,
+    _comma = 299,
+    _semicolon = 300,
+    _colon = 301,
+    _void = 302,
+    _auto = 303,
+    _register = 304,
+    _static = 305,
+    _extern = 306,
+    _volatile = 307,
+    _eofile = 308,
+    _id = 309,
+    _charcons = 310,
+    _num = 311,
+    _dnum = 312,
+    _if = 313,
+    _while = 314,
+    _do = 315,
+    _for = 316
   };
 #endif
-/* Tokens.  */
-#define Math 258
-#define String 259
-#define Import 260
-#define Standard 261
-#define FUNCTION 262
-#define RETURN 263
-#define FOR 264
-#define WHILE 265
-#define IF 266
-#define ELSE 267
-#define DO 268
-#define COMMA 269
-#define BREAK 270
-#define INT 271
-#define FLOAT 272
-#define CHAR 273
-#define STRING 274
-#define READ 275
-#define NUM 276
-#define SOB 277
-#define SCB 278
-#define COB 279
-#define CCB 280
-#define CROB 281
-#define CRCB 282
-#define ID 283
-#define PLUS 284
-#define MINUS 285
-#define MULTIPLY 286
-#define DIVISON 287
-#define AND 288
-#define OR 289
-#define LT 290
-#define LTE 291
-#define GT 292
-#define GTE 293
-#define EQUALTO 294
-#define ASSIGNMENT 295
-#define SEMICOLON 296
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
-#line 40 "project.y" /* yacc.c:1909  */
+#line 37 "ic.y" /* yacc.c:1909  */
 
-int ival;
-double dval;
-char string[10];
+  char name[NAMESIZE];
+  int no;
+  Attr attr;
+  
+  /*Label label;*/
+  struct tfLabel
+  {	
+	char trueLabel[10];
+  	char falseLabel[10];
+  }tflabel;
+ struct ForLabel
+ {
+	char cond2Label[10];
+	char cond3Label[10];
+	char cond2TestLabel[10];
+	char nextStmtLabel[10];
+ }forLabel;
 
-#line 142 "y.tab.h" /* yacc.c:1909  */
+#line 136 "ic.tab.h" /* yacc.c:1909  */
 };
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
@@ -149,4 +143,4 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_Y_TAB_H_INCLUDED  */
+#endif /* !YY_YY_IC_TAB_H_INCLUDED  */

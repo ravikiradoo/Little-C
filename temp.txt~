@@ -4,7 +4,7 @@ FILE *yyin;
 %}
 
 
-%token Math String Import Standard PROCEDURE
+%token Math String Import Standard FUNCTION
 %token FOR WHILE IF ELSE
 %token INT FLOAT CHAR STRING ID READ NUM
 %token SOB SCB COB CCB CROB CRCB 
@@ -12,23 +12,21 @@ FILE *yyin;
 %%
 
 
-str: Program ;
-Program:Import SOB Standard Library SCB Variable_Declaration_List Function_List ;
+str: Program {return 0;} ;
+Program:Import SOB Standard Library SCB Variable_Declaration_List Function_List {printf("0");} ;
 Library: Math Library|String Library | Math |String ;
 Variable_Declaration_List: Variable Variable_Declaration_List | Variable {printf("1");};
 Variable: Type ID  {printf("2");};
-Type:INT|FLOAT|CHAR|STRING  {printf("3");};
-Function_List:Function Function_List|Function {printf("4");};
-Function: Type ID COB Parameter_List CCB Block {printf("5");}; 
-Parameter_List:Parameter Parameter_List|Parameter{printf("6");};
-Parameter:Type ID {printf("7");};;
-Block:CROB Statement_List CRCB {printf("8");};
-Statement_List: Statement Statement_List|Statement {printf("9");};
-Statement: Variable_Declaration_List|Loop_Statement|READ COB ID CCB {printf("10");};
-Loop_Statement: FOR COB ID ASSIGNMENT Expression ";" ID Condtional_Operator Expression ";" ID ASSIGNMENT ID Arithmetic_Operator CCB Block {printf("11");};
+Type:INT|FLOAT|CHAR|STRING {printf("3");};
+Function_List: Function Function_List|Function  {printf("4");};
+Function:  FUNCTION Type ID COB CCB Block{printf("5");} ;
+Block:CROB Statement_List CRCB {printf("6");};
+Statement_List: Statement Statement_List|Statement {printf("7");};
+Statement: Variable_Declaration_List|Loop_Statement|READ COB ID CCB {printf("8");};
+Loop_Statement: FOR COB ID ASSIGNMENT Expression ";" ID Condtional_Operator Expression ";" ID ASSIGNMENT ID Arithmetic_Operator CCB Block {printf("9 ");};
 Expression : NUM |  CROB Expression CRCB | SOB Expression SCB | COB Expression CCB| ID | ID ASSIGNMENT Expression {printf("1");}; ;
-Arithmetic_Operator : PLUS | MINUS | MULTIPLY| DIVISON |ASSIGNMENT {printf("12");} ;
-Condtional_Operator :  LT|LTE|GT|GTE|EQUALTO {printf("13");};
+Arithmetic_Operator : PLUS | MINUS | MULTIPLY| DIVISON |ASSIGNMENT {printf("10 ");} ;
+Condtional_Operator :  LT|LTE|GT|GTE|EQUALTO {printf("11 ");};
 
 %%
 #include "lex.yy.c"
@@ -43,9 +41,10 @@ main(int argc,char *argv[])
 }
 
 yyerror(char *s) {
-	printf("%d : %s %s\n", yylineno, s, yytext );
+	printf("\n line No. %d : %s %s\n", yylineno, yytext,s );
+}
 int yywrap(void)
 {
 return 1;
 }
-}   
+

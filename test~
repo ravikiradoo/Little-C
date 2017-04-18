@@ -1,5 +1,7 @@
 import [standard math] 
 int ade
+int abc
+char c
 function int bcc()
 {	float s
 	Read(gdf)
@@ -8,10 +10,9 @@ function int bcc()
 	{
 		Read(fedfc)
  if(c<3)
-{M=M+2}
+{M=M+2+P}
 ABC(a,5,bc)
 break
-return 2
 	}
 
 while(c<5)

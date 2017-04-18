@@ -2,6 +2,8 @@ Letter [a-zA-Z]
 Digit  [0-9]
 AlphaNumeric [a-zA-Z0-9]
 %{
+#include<string.h>
+#include<stdlib.h>
 #include "y.tab.h"
 int yylineno;
 %}
@@ -13,12 +15,12 @@ int yylineno;
 [ \n] {yylineno=yylineno+1;}
 standard return Standard;
 math return Math;
-string return String;
+string {strcpy(yylval.string,yytext);return String; };
 String return STRING;
 import return Import;
-int return INT;
-float return FLOAT;
-char return CHAR;
+int  {strcpy(yylval.string,yytext);return INT; };
+float  {strcpy(yylval.string,yytext);return FLOAT; };
+char  {strcpy(yylval.string,yytext);return CHAR; };
 for return FOR;
 while return WHILE;
 if return IF;
@@ -27,10 +29,11 @@ And return AND;
 Or return OR;
 function return FUNCTION;
 Read return READ;
-Retuurn return RETURN
+Return return RETURN;
+break return BREAK;
 do return DO;
 {Digit}+ return NUM;
-{Letter}({Letter}|{Digit})* return ID;
+{Letter}({Letter}|{Digit})* {strcpy(yylval.string,yytext);return ID; };
 "[" return SOB;
 "]" return SCB;
 "(" return COB;
@@ -42,11 +45,11 @@ do return DO;
 ">" return GT;
 "<=" return LTE;
 ">=" return GTE;
-"+" return PLUS;
-"-" return MINUS;
-"/" return DIVISON;
-"*" return MULTIPLY;
-"=" return ASSIGNMENT;
+"+"  {strcpy(yylval.string,yytext);return PLUS; };
+"-"  {strcpy(yylval.string,yytext); return MINUS;};
+"/"  {strcpy(yylval.string,yytext);return DIVISON; };
+"*"  {strcpy(yylval.string,yytext);return MULTIPLY;};
+"=" {strcpy(yylval.string,yytext);return ASSIGNMENT; };
 ; return SEMICOLON;
 , return COMMA;
 
